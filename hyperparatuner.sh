@@ -8,8 +8,8 @@
 eval "$(conda shell.bash hook)"
 #conda activate hotpotqa
 
-JOBS_PATH=multirc_jobs
-LOGS_PATH=multirc_logs
+JOBS_PATH=hotpotqa_jobs
+LOGS_PATH=hotpotqa_logs
 for ENTRY in "${JOBS_PATH}"/*.sh; do
   chmod +x $ENTRY
   FILE_NAME="$(basename "$ENTRY")"
