@@ -84,7 +84,7 @@ def generate_random_search_bash(task_num, seed=42):
     search_space = HypeParameterSpace()
     for i in range(task_num):
         rand_hype_dict = single_task_trial(search_space, seed+i)
-        config_json_file_name = 'train.sent_drop.' + rand_hype_dict['model_type'] + 'sdr.' + str(rand_hype_dict['sent_drop_ratio']) + 'dp.' + str(rand_hype_dict['drop_prob']) \
+        config_json_file_name = 'train.hotpotqa.sent_drop.' + rand_hype_dict['model_type'] + 'sdr.' + str(rand_hype_dict['sent_drop_ratio']) + 'dp.' + str(rand_hype_dict['drop_prob']) \
                                 +'.lr.'+ str(rand_hype_dict['learning_rate']) + rand_hype_dict['optimizer'] + '.' + rand_hype_dict['lr_scheduler']+ \
                                 '.seed' + str(rand_hype_dict['seed']) + '.json'
         with open(os.path.join(bash_save_path, config_json_file_name), 'w') as fp:
