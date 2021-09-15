@@ -47,7 +47,7 @@ def rand_search_parameter(space: dict):
 def HypeParameterSpace():
     learning_rate = {'name': 'learning_rate', 'type': 'choice', 'values': [3e-6, 2e-6, 1e-6, 1e-5]} #3e-5, 5e-5, 1e-4, 1.5e-4
     layer_wise_lr_decay = {'name': 'layer_wise_lr_decay', 'type': 'choice', 'values': [0.9]}
-    gradient_accumulation_steps = {'name': 'gradient_accumulation_steps', 'type': 'choice', 'values': [1,2]}
+    gradient_accumulation_steps = {'name': 'gradient_accumulation_steps', 'type': 'choice', 'values': [1]}
     sent_lambda = {'name': 'sent_lambda', 'type': 'choice', 'values': [15]} ##
     drop_prob = {'name': 'drop_prob', 'type': 'choice', 'values': [0.5]}
     num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [15]}
