@@ -18,9 +18,9 @@ def single_task_trial(search_space: dict, rand_seed=42):
     for key, value in search_space.items():
         parameter_dict[key] = rand_search_parameter(value)
     parameter_dict['seed'] = rand_seed
-    exp_name = 'train.' + parameter_dict['model_type'] + '.bs' + str(parameter_dict['per_gpu_train_batch_size']) + '.as' + str(parameter_dict['gradient_accumulation_steps']) + \
-               '.lr' + str(parameter_dict['learning_rate']) + 'sdr.' + str(parameter_dict['sent_drop_ratio']) + \
-               '.data' +str(parameter_dict['daug_type']) + parameter_dict['optimizer'] + '.' + parameter_dict['lr_scheduler'] + '.seed' +str(rand_seed)
+    exp_name = 'train.hpqa' + parameter_dict['model_type'] + '.bs' + str(parameter_dict['per_gpu_train_batch_size']) + '.as' +\
+               str(parameter_dict['gradient_accumulation_steps']) + \
+               '.lr' + str(parameter_dict['learning_rate']) + 'sdr.' + str(parameter_dict['sent_drop_ratio']) + '.seed' +str(rand_seed)
     parameter_dict['exp_name'] = exp_name
     return parameter_dict
 
