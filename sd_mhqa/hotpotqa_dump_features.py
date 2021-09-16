@@ -41,7 +41,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.large_model:
         args.tokenizer_name = 'google/electra-large-discriminator'
-    else:
         args.model_name_or_path = 'google/electra-large-discriminator'
     print('*' * 75)
     for key, value in vars(args).items():
