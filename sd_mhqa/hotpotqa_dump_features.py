@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import argparse
 from sd_mhqa.hotpotqa_data_utils import hotpot_answer_tokenizer
 from os.path import join
