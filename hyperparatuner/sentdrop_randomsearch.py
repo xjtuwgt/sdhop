@@ -55,7 +55,7 @@ def HypeParameterSpace():
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
     model_type = {'name': 'model_type', 'type': 'choice', 'values': ['electra']}
     fine_tuned_encoder = {'name': 'fine_tuned_encoder', 'type': 'choice', 'values': ['google/electra-base-discriminator']} #'ahotrod/roberta_large_squad2'
-    encoder_name_or_path = {'name': 'encoder_name_or_path', 'type': 'choice', 'values': ['electra']}
+    encoder_name_or_path = {'name': 'encoder_name_or_path', 'type': 'choice', 'values': ['google/electra-base-discriminator']}
     optimizer = {'name': 'optimizer', 'type': 'choice', 'values': ['Adam']} #RecAdam
     lr_scheduler = {'name': 'lr_scheduler', 'type': 'choice', 'values': ['cosine']}
     #++++++++++++++++++++++++++++++++++
