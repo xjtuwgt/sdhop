@@ -23,7 +23,10 @@ class DataHelper:
         self.config = config
 
     def get_example_file(self, tag, f_type=None):
-        cached_filename = get_cached_filename('{}_hotpotqa_tokenized_examples'.format(f_type), self.config)
+        if self.config.large_model:
+            cached_filename = get_cached_filename('{}_large_hotpotqa_tokenized_examples'.format(f_type), self.config)
+        else:
+            cached_filename = get_cached_filename('{}_hotpotqa_tokenized_examples'.format(f_type), self.config)
         return join(self.data_dir, tag, cached_filename)
 
     @property

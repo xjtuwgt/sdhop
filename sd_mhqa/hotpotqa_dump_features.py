@@ -8,9 +8,11 @@ from os.path import join
 import gzip
 import pickle
 from model_envs import MODEL_CLASSES
+from sd_mhqa.hotpotqa_argument_parser import boolean_string
 
 def get_cached_filename(f_type, config):
-    f_type_set = {'long_low_hotpotqa_tokenized_examples', 'hgn_low_hotpotqa_tokenized_examples'}
+    f_type_set = {'long_low_hotpotqa_tokenized_examples', 'hgn_low_hotpotqa_tokenized_examples',
+                  'long_low_large_hotpotqa_tokenized_examples', 'hgn_low_large_hotpotqa_tokenized_examples'}
     assert f_type in f_type_set
     return f"cached_{f_type}_{config.model_type}.pkl.gz"
 
@@ -24,9 +26,10 @@ if __name__ == '__main__':
     # Other parameters
     parser.add_argument("--model_type", default=None, type=str, required=True,
                         help="Model type selected in the list: " + ", ".join(MODEL_CLASSES.keys()))
-    parser.add_argument("--tokenizer_name", default="", type=str,
+    parser.add_argument("--large_model", default="false", type=boolean_string)
+    parser.add_argument("--tokenizer_name", default="google/electra-base-discriminator", type=str,
                         help="Pretrained tokenizer name or path if not the same as model_name")
-    parser.add_argument("--model_name_or_path", default=None, type=str, required=True,
+    parser.add_argument("--model_name_or_path", default='google/electra-base-discriminator', type=str,
                         help="Path to pre-trained model")
     parser.add_argument("--do_lower_case", action='store_true',
                         help="Set this flag if you are using an uncased model.")
@@ -40,6 +43,10 @@ if __name__ == '__main__':
     parser.add_argument("--ranker", default=None, type=str, required=True,
                         help="The ranker for paragraph ranking")
     args = parser.parse_args()
+    if args.large_model:
+        args.tokenizer_name = 'google/electra-large-discriminator'
+    else:
+        args.model_name_or_path = 'google/electra-large-discriminator'
     print('*' * 75)
     for key, value in vars(args).items():
         print('Hype-parameter: {}:\t{}'.format(key, value))
@@ -64,8 +71,12 @@ if __name__ == '__main__':
                                        sep_token=tokenizer.sep_token,
                                        is_roberta=bool(args.model_type in ['roberta']),
                                        data_source_type=data_source_type)
-    cached_examples_file = join(args.output_dir,
-                                        get_cached_filename('{}_hotpotqa_tokenized_examples'.format(data_source_name), args))
+    if args.large_model:
+        cached_examples_file = join(args.output_dir,
+                                            get_cached_filename('{}_large_hotpotqa_tokenized_examples'.format(data_source_name), args))
+    else:
+        cached_examples_file = join(args.output_dir,
+                                            get_cached_filename('{}_hotpotqa_tokenized_examples'.format(data_source_name), args))
     with gzip.open(cached_examples_file, 'wb') as fout:
         pickle.dump(examples, fout)
     print('Saving {} examples in {}'.format(len(examples), cached_examples_file))

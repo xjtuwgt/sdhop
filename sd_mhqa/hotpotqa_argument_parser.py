@@ -60,7 +60,8 @@ def complete_default_train_parser(args):
     args.batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     # TODO: only support albert-xxlarge-v2 now
     args.input_dim = 768 if 'base' in args.encoder_name_or_path else (4096 if 'albert' in args.encoder_name_or_path else 1024)
-
+    if args.large_model:
+        args.encoder_name_or_path = 'google/electra-large-discriminator'
     # output dir name
     if not args.exp_name:
         args.exp_name = '_'.join([args.encoder_name_or_path,
@@ -101,6 +102,7 @@ def default_train_parser():
                         help="Model type selected in the list")
     parser.add_argument("--max_seq_length", default=512, type=int)
     parser.add_argument("--max_query_length", default=50, type=int)
+    parser.add_argument("--large_model", default='false', type=boolean_string)
     parser.add_argument("--encoder_name_or_path",
                         default='google/electra-base-discriminator',
                         type=str,
