@@ -9,7 +9,7 @@ from utils.ioutils import json_loader
 from torch import Tensor
 import re
 
-nlp = spacy.load("en_core_web_lg", disable=['tagger', 'parser'])
+nlp = spacy.load("en_core_web_lg", disable=['tagger', 'parser', 'lemmatizer'])
 infix_re = re.compile(r'''[-—–~]''')
 nlp.tokenizer.infix_finditer = infix_re.finditer
 ###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
