@@ -54,13 +54,13 @@ def HypeParameterSpace():
     sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.05, 0.1, 0.15]}
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
     model_type = {'name': 'model_type', 'type': 'choice', 'values': ['electra']}
-    fine_tuned_encoder = {'name': 'fine_tuned_encoder', 'type': 'choice', 'values': ['google/electra-base-discriminator']} #'ahotrod/roberta_large_squad2'
+    # fine_tuned_encoder = {'name': 'fine_tuned_encoder', 'type': 'choice', 'values': ['google/electra-base-discriminator']} #'ahotrod/roberta_large_squad2'
     encoder_name_or_path = {'name': 'encoder_name_or_path', 'type': 'choice', 'values': ['google/electra-base-discriminator']}
     optimizer = {'name': 'optimizer', 'type': 'choice', 'values': ['Adam']} #RecAdam
     lr_scheduler = {'name': 'lr_scheduler', 'type': 'choice', 'values': ['cosine']}
     #++++++++++++++++++++++++++++++++++
     search_space = [learning_rate, per_gpu_train_batch_size, gradient_accumulation_steps, sent_lambda, layer_wise_lr_decay,
-                    lr_scheduler, fine_tuned_encoder, optimizer, drop_prob, num_train_epochs,
+                    lr_scheduler, optimizer, drop_prob, num_train_epochs,
                     model_type, encoder_name_or_path, sent_drop_ratio]
     search_space = dict((x['name'], x) for x in search_space)
     return search_space
