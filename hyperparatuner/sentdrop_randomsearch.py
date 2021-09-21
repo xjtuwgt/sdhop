@@ -45,7 +45,7 @@ def rand_search_parameter(space: dict):
         raise ValueError('Training batch mode %s not supported' % para_type)
 
 def HypeParameterSpace():
-    learning_rate = {'name': 'learning_rate', 'type': 'choice', 'values': [3e-6, 2e-6, 1e-6, 1e-5]} #3e-5, 5e-5, 1e-4, 1.5e-4
+    learning_rate = {'name': 'learning_rate', 'type': 'choice', 'values': [3e-5, 2e-5, 1e-5, 1e-5]} #3e-5, 5e-5, 1e-4, 1.5e-4
     layer_wise_lr_decay = {'name': 'layer_wise_lr_decay', 'type': 'choice', 'values': [0.9]}
     gradient_accumulation_steps = {'name': 'gradient_accumulation_steps', 'type': 'choice', 'values': [1]}
     sent_lambda = {'name': 'sent_lambda', 'type': 'choice', 'values': [15]} ##
