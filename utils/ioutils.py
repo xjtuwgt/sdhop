@@ -3,6 +3,7 @@ import json
 from pandas import DataFrame
 import pandas as pd
 import os
+import gzip, pickle
 from model_envs import MODEL_CLASSES
 ###+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 def json_loader(json_file_name: str):
@@ -15,6 +16,14 @@ def loadWikiData(json_file_name: str)->DataFrame:
     data_frame = pd.read_json(json_file_name, orient='records')
     print('Loading {} in {:.4f} seconds'.format(data_frame.shape, time() - start_time))
     return data_frame
+
+def load_gz_file(file_name):
+    start_time = time()
+    with gzip.open(file_name, 'rb') as fin:
+        print('loading', file_name)
+        data = pickle.load(fin)
+    print('Loading {} from {} in {:.4f} seconds'.format(len(data), file_name, time() - start_time))
+    return data
 
 def load_encoder_model(encoder_name_or_path, model_type):
     if encoder_name_or_path in [None, 'None', 'none']:
