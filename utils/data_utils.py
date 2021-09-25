@@ -6,6 +6,5 @@ def length_analysis(data_file_name: str):
     num_sent_list = []
     for example in examples:
         num_sent_list.append(len(example.sent_names))
-        print(len(example.sent_names))
     num_array = np.array(num_sent_list)
     return num_array
