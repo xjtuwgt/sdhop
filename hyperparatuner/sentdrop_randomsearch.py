@@ -51,7 +51,8 @@ def HypeParameterSpace():
     sent_lambda = {'name': 'sent_lambda', 'type': 'choice', 'values': [10, 15]} ##
     drop_prob = {'name': 'drop_prob', 'type': 'choice', 'values': [0.05]}
     num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [15]}
-    sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2]}
+    # sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2]}
+    sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.0]}
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
     model_type = {'name': 'model_type', 'type': 'choice', 'values': ['electra']}
     # fine_tuned_encoder = {'name': 'fine_tuned_encoder', 'type': 'choice', 'values': ['google/electra-base-discriminator']} #'ahotrod/roberta_large_squad2'
