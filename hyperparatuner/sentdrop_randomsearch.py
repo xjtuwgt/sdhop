@@ -50,7 +50,7 @@ def HypeParameterSpace():
     gradient_accumulation_steps = {'name': 'gradient_accumulation_steps', 'type': 'choice', 'values': [1]}
     sent_lambda = {'name': 'sent_lambda', 'type': 'choice', 'values': [10, 15]} ##
     drop_prob = {'name': 'drop_prob', 'type': 'choice', 'values': [0.0]}
-    num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [15]}
+    num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [10]}
     # sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2]}
     sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.0]}
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
