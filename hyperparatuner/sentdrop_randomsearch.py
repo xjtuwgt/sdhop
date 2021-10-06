@@ -19,7 +19,7 @@ def single_task_trial(search_space: dict, rand_seed=42):
         parameter_dict[key] = rand_search_parameter(value)
     parameter_dict['seed'] = rand_seed
     exp_name = 'train.hpqa' + parameter_dict['model_type'] + '.bs' + str(parameter_dict['per_gpu_train_batch_size']) + '.as' +\
-               str(parameter_dict['gradient_accumulation_steps']) + \
+               str(parameter_dict['gradient_accumulation_steps']) + 'lg.beta.' + str(parameter_dict['large_model']) + str(parameter_dict['beta_drop']) + \
                '.lr' + str(parameter_dict['learning_rate']) + 'sdr.' + str(parameter_dict['sent_drop_ratio']) + '.seed' +str(rand_seed)
     parameter_dict['exp_name'] = exp_name
     return parameter_dict
@@ -53,15 +53,17 @@ def HypeParameterSpace():
     num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [10]}
     # sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2]}
     sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.0]}
+    beta_drop = {'name': 'beta_drop', 'type': 'choice', 'values': ['false']}
+    large_model = {'name': 'large_model', 'type': 'choice', 'values': ['false']}
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
     model_type = {'name': 'model_type', 'type': 'choice', 'values': ['electra']}
     # fine_tuned_encoder = {'name': 'fine_tuned_encoder', 'type': 'choice', 'values': ['google/electra-base-discriminator']} #'ahotrod/roberta_large_squad2'
     encoder_name_or_path = {'name': 'encoder_name_or_path', 'type': 'choice', 'values': ['google/electra-base-discriminator']}
-    optimizer = {'name': 'optimizer', 'type': 'choice', 'values': ['Adam']} #RecAdam
+    optimizer = {'name': 'optimizer', 'type': 'choice', 'values': ['AdamW']} #RecAdam
     lr_scheduler = {'name': 'lr_scheduler', 'type': 'choice', 'values': ['cosine']}
     #++++++++++++++++++++++++++++++++++
     search_space = [learning_rate, per_gpu_train_batch_size, gradient_accumulation_steps, sent_lambda, layer_wise_lr_decay,
-                    lr_scheduler, optimizer, drop_prob, num_train_epochs,
+                    lr_scheduler, optimizer, drop_prob, num_train_epochs, beta_drop, large_model,
                     model_type, encoder_name_or_path, sent_drop_ratio]
     search_space = dict((x['name'], x) for x in search_space)
     return search_space
@@ -87,7 +89,7 @@ def generate_random_search_bash(task_num, seed=42):
         rand_hype_dict = single_task_trial(search_space, seed+i)
         config_json_file_name = 'train.hotpotqa.sent_drop.' + rand_hype_dict['model_type'] + 'sdr.' + str(rand_hype_dict['sent_drop_ratio']) + 'dp.' + str(rand_hype_dict['drop_prob']) \
                                 +'.lr.'+ str(rand_hype_dict['learning_rate']) + rand_hype_dict['optimizer'] + '.' + rand_hype_dict['lr_scheduler']+ \
-                                '.seed' + str(rand_hype_dict['seed']) + '.json'
+                                'lg.beta.' + str(rand_hype_dict['large_model']) + str(rand_hype_dict['beta_drop']) + '.seed' + str(rand_hype_dict['seed']) + '.json'
         with open(os.path.join(bash_save_path, config_json_file_name), 'w') as fp:
             json.dump(rand_hype_dict, fp)
         print('{}\n{}'.format(rand_hype_dict, config_json_file_name))
