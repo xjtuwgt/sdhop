@@ -183,7 +183,6 @@ def default_train_parser():
                         help="evaluate every X updates steps.")
     parser.add_argument('--learning_rate_schema', type=str, default='layer_decay',
                         help="Log every X updates steps.") # 'group_decay', 'layer_decay'
-
     ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     parser.add_argument("--optimizer", type=str, default="AdamW", choices=["Adam", "AdamW" , "RecAdam"],
                         help="Choose the optimizer to use. Default RecAdam.")
