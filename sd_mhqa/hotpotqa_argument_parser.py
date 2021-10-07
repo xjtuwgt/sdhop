@@ -185,7 +185,7 @@ def default_train_parser():
                         help="Log every X updates steps.") # 'group_decay', 'layer_decay'
 
     ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    parser.add_argument("--optimizer", type=str, default="Adam", choices=["Adam", "RecAdam"],
+    parser.add_argument("--optimizer", type=str, default="AdamW", choices=["Adam", "AdamW" , "RecAdam"],
                         help="Choose the optimizer to use. Default RecAdam.")
     parser.add_argument("--lr_scheduler", type=str, default="cosine", choices=["linear", "cosine", "cosine_restart"],
                         help="Choose the optimizer to use. Default RecAdam.")
