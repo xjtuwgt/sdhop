@@ -53,7 +53,7 @@ def HypeParameterSpace():
     num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [10]}
     sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2, 0.25]}
     # sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.0]}
-    beta_drop = {'name': 'beta_drop', 'type': 'choice', 'values': ['false']}
+    beta_drop = {'name': 'beta_drop', 'type': 'choice', 'values': ['true']}
     large_model = {'name': 'large_model', 'type': 'choice', 'values': ['false']}
     per_gpu_train_batch_size = {'name': 'per_gpu_train_batch_size', 'type': 'choice', 'values': [4]}
     model_type = {'name': 'model_type', 'type': 'choice', 'values': ['electra']}
