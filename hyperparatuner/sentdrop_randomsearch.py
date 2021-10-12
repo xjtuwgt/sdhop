@@ -51,7 +51,7 @@ def HypeParameterSpace():
     sent_lambda = {'name': 'sent_lambda', 'type': 'choice', 'values': [10, 15]} ##
     drop_prob = {'name': 'drop_prob', 'type': 'choice', 'values': [0.25]}
     num_train_epochs = {'name': 'num_train_epochs', 'type': 'choice', 'values': [10]}
-    sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.1, 0.15, 0.2, 0.25]}
+    sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.2, 0.25, 0.3, 0.4]}
     # sent_drop_ratio = {'name': 'sent_drop_ratio', 'type': 'choice', 'values': [0.0]}
     beta_drop = {'name': 'beta_drop', 'type': 'choice', 'values': ['true']}
     large_model = {'name': 'large_model', 'type': 'choice', 'values': ['false']}
